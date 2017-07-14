@@ -19,6 +19,7 @@ ReactDOM.render(
 
       </div>
     </BrowserRouter>
-  </Provider>
-  , document.querySelector('.container'));
+  </Provider>,
+  document.querySelector('.container'),
+);
 
