@@ -1,1 +1,5 @@
 1. For the routing, we need to put our most specific route on the top 
+2. HOW TO CREATE REDUX FORM :
+    1. in your reducers/index.js , import Reducer as formReducer from redux-form
+       inside the combineReducer, add another object which is form:formReducer
+    3. 
