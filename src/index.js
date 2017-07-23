@@ -17,6 +17,7 @@ ReactDOM.render(
     <BrowserRouter>
       <div>
         <Switch>
+         {{/* Put the most specific route in the top*/}}
           <Route path="/posts/new" component={PostsNew} />
           <Route path="/" component={PostIndex} />
         </Switch>
