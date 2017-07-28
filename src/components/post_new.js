@@ -24,10 +24,17 @@ class PostsNew extends Component {
     );
   }
 
+  onSubmit(values) {
+    console.log(values);
+  }
 
   render() {
+    // We take { handleSubmit } from the redux
+    // We can do that because we already connect redux form with redux, so we get a ton of additional properties
+    // By using reduxForm(), similar to connect() function
+    const { handleSubmit } = this.props;
     return (
-      <form>
+      <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
         <Field
           label="Title for Post"
         // Name of the field (ex: Title, Author, Address)
