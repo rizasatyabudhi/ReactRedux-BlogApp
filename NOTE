@@ -9,4 +9,10 @@
     we pass a single argument which is a function , this function take some configuration option
 
 4. ReduxForm <Field /> only know how to interract with redux form  , it doesn't know how to
-   do JSX (render to the DOM ) , so we use the component props to render the html
+   do JSX (render to the DOM ) , so we use the component props to render the html.
+   It can't even handle form submition POST Request to the backend server, so we need to create that ourselves
+
+5. 3 States of redux form:
+    1. Pristine : When the form hasn't been clicked or typed (still new)
+    2. Touched  : When the form has been clicked 
+    3. Invalid  : When the form has an invalid value (already validated)

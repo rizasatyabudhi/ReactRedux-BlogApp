@@ -2,15 +2,18 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 
 class PostsNew extends Component {
-
-
   renderField(field) {
   // The field argument is the one that connecting the data inside our renderField function
   // With the <Field> in our render( )
   // If we pass argument to the renderField(field) function, it will automatically be available
   // To the <Field> component
+
+  // Destructuring, So we don't have to type field.meta.touched or field.meta.error
+    const { meta: { touched, error } } = field;
+    const className = `form-group ${touched && error ? 'has-danger' : ''}`;
+
     return (
-      <div className="form-group">
+      <div className={className} >
         <label>{field.label}</label>
         <input
           className="form-control"
@@ -19,7 +22,12 @@ class PostsNew extends Component {
         // Doesn't have to specify all the event handler like onChange={field.input.onChange} , etc
           {...field.input}
         />
-        {field.meta.errors}
+        {/* terniary operation.
+        If the statement left of the ? is true, then execute the first option, else exec the second option
+        */}
+        <div className="text-help">
+          {touched ? error : ''}
+        </div>
       </div>
     );
   }
@@ -34,6 +42,8 @@ class PostsNew extends Component {
     // By using reduxForm(), similar to connect() function
     const { handleSubmit } = this.props;
     return (
+      // When the user submit the form, firs the reduxForm wide will run (which is the handleSubmit)
+      // if the form has been validated by the handleSubmit, then we call the onSubmit function that we create
       <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
         <Field
           label="Title for Post"
@@ -52,6 +62,7 @@ class PostsNew extends Component {
           name="content"
           component={this.renderField}
         />
+        <button type="submit" className="btn btn-primary">Submit</button>
       </form>
     );
   }
