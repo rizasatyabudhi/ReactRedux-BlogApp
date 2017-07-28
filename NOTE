@@ -7,5 +7,6 @@
 
 3. reduxForm (to connect our form with the reducers):
     we pass a single argument which is a function , this function take some configuration option
+
 4. ReduxForm <Field /> only know how to interract with redux form  , it doesn't know how to
-   do JSX (render to the DOM ) , so the component property 
+   do JSX (render to the DOM ) , so we use the component props to render the html

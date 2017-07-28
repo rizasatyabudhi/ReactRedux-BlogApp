@@ -26,7 +26,7 @@ class PostIndex extends Component {
     return (
       <div>
         <div className="text-xs-right">
-          {{/* Link is similar to anchor tag */}}
+
           <Link className="btn btn-primary" to="/posts/new">
            Add a post
            </Link>
