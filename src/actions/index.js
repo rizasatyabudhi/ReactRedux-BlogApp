@@ -3,6 +3,7 @@ import axios from 'axios';
 export const FETCH_POSTS = 'fetch_posts'; // Show ALL Post
 export const CREATE_POST = 'create_posts'; // Create Post
 export const FETCH_POST = 'fetch_post'; // Show Particular Post
+export const DELETE_POST = 'delete_post'; // Delete Particular Post
 
 const ROOT_URL = 'https://reduxblog.herokuapp.com/api';
 const API_KEY = '?key=RIZAKEY';
@@ -21,6 +22,7 @@ export function createPost(values, callback) {
   // axios.post is similar to axios.get, but we need second argument (what will post (values))
   // .then is a PROMISE, after the request successfull, execute the .then callback
   const request = axios.post(`${ROOT_URL}/posts${API_KEY}`, values)
+  // This is required to make a callback function
     .then(() => callback());
 
   return {
@@ -34,5 +36,15 @@ export function fetchPost(id) {
   return {
     type: FETCH_POST,
     payload: request,
+  };
+}
+
+export function deletePost(id, callback) {
+  const request = axios.delete(`${ROOT_URL}/posts/${id}${API_KEY}`)
+    .then(() => callback());
+
+  return {
+    type: DELETE_POST,
+    payload: id,
   };
 }
