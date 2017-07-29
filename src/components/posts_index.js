@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { fetchPosts } from '../actions/index';
 
 
-class PostIndex extends Component {
+class PostsIndex extends Component {
   // The data will be fetched after the component is rendered
   componentDidMount() {
     this.props.fetchPosts();
@@ -26,7 +26,6 @@ class PostIndex extends Component {
     return (
       <div>
         <div className="text-xs-right">
-
           <Link className="btn btn-primary" to="/posts/new">
            Add a post
            </Link>
@@ -44,4 +43,4 @@ function mapStateToProps(state) {
   return { posts: state.posts };
 }
 
-export default connect(mapStateToProps, { fetchPosts })(PostIndex);
+export default connect(mapStateToProps, { fetchPosts })(PostsIndex);
