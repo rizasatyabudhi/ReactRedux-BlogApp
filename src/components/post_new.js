@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { createPost } from '../actions/index';
 
 class PostsNew extends Component {
   renderField(field) {
@@ -34,7 +36,12 @@ class PostsNew extends Component {
   }
 
   onSubmit(values) {
-    console.log(values);
+    // Call the action creator
+    // We use callback function, AFTER the createPost finishes, call the history.push
+    // We get the props.history.push from the <Route> in index.js
+    this.props.createPost(values, () => {
+      this.props.history.push('/');
+    });
   }
 
   render() {
@@ -43,8 +50,8 @@ class PostsNew extends Component {
     // By using reduxForm(), similar to connect() function
     const { handleSubmit } = this.props;
     return (
-      // When the user submit the form, firs the reduxForm wide will run (which is the handleSubmit)
-      // if the form has been validated by the handleSubmit, then we call the onSubmit function that we create
+      // When the user submit the form, first the reduxForm side will run (which is the handleSubmit)
+      // if the form has been validated by the handleSubmit, then we call the onSubmit function that we created
       <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
         <Field
           label="Title for Post"
@@ -85,7 +92,7 @@ function validate(values) {
   }
 
   // If errors is empty , the form is fine to submit
-  // If errors has *any* properties, redux form assumes form is invalid
+  // If errors has *any* properties, redux form assumes form is invalid and will return the errors
   return errors;
 }
 
@@ -96,4 +103,6 @@ export default reduxForm({
   validate,
   // Must be unique, this will be the name for THIS PARTICULAR FORM
   form: 'PostsNewForm',
-})(PostsNew);
+})(
+  connect(null, { createPost })(PostsNew),
+);

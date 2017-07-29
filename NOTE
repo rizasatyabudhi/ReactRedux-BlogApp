@@ -16,3 +16,5 @@
     1. Pristine : When the form hasn't been clicked or typed (still new)
     2. Touched  : When the form has been clicked 
     3. Invalid  : When the form has an invalid value (already validated)
+
+    
