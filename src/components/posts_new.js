@@ -22,7 +22,7 @@ class PostsNew extends Component {
           className="form-control"
           type="text"
         // This is the pre-generated event handler, so the <input> tag we created
-        // Doesn't have to specify all the event handler like onChange={field.input.onChange} , etc
+        // doesn't have to specify all the event handler like onChange={field.input.onChange} , etc
           {...field.input}
         />
         {/* terniary operation.
