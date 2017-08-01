@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { FETCH_POSTS, FETCH_POST } from '../actions';
+import { FETCH_POSTS, FETCH_POST, DELETE_POST } from '../actions';
 
 export default function (state = {}, action) {
   switch (action.type) {
@@ -21,6 +21,10 @@ export default function (state = {}, action) {
      // we use lodash library, mapKeys ,
      // the first argument is the array , the second argument is the element that we want to create into a key
       return _.mapKeys(action.payload.data, 'id');
+
+    case DELETE_POST:
+      // Look at the state object, and delete that object with the given id (action.payload)
+      return _.omit(state, action.payload);
     default:
       return state;
   }

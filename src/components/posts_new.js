@@ -5,9 +5,19 @@ import { connect } from 'react-redux';
 import { createPost } from '../actions/index';
 
 class PostsNew extends Component {
+
+  onSubmit(values) {
+    // Call the action creator
+    // We use callback function, AFTER the createPost finishes, call the history.push
+    // We get the props.history.push from the <Route> in index.js
+    this.props.createPost(values, () => {
+      this.props.history.push('/');
+    });
+  }
+
   renderField(field) {
   // The field argument is the one that connecting the data inside our renderField function
-  // With the <Field> in our render( )
+  // with the <Field> in our render( )
   // If we pass argument to the renderField(field) function, it will automatically be available
   // To the <Field> component
 
@@ -25,9 +35,7 @@ class PostsNew extends Component {
         // doesn't have to specify all the event handler like onChange={field.input.onChange} , etc
           {...field.input}
         />
-        {/* terniary operation.
-        If the statement left of the ? is true, then execute the first option, else exec the second option
-        */}
+
         <div className="text-help">
           {touched ? error : ''}
         </div>
@@ -35,14 +43,6 @@ class PostsNew extends Component {
     );
   }
 
-  onSubmit(values) {
-    // Call the action creator
-    // We use callback function, AFTER the createPost finishes, call the history.push
-    // We get the props.history.push from the <Route> in index.js
-    this.props.createPost(values, () => {
-      this.props.history.push('/');
-    });
-  }
 
   render() {
     // We take { handleSubmit } from the redux
